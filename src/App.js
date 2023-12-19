@@ -6,7 +6,7 @@ export default class App extends Component{
     super(props);
 
     this.state={ 
-      posts:[]
+      posts :[]
     };
 
   }
@@ -28,20 +28,41 @@ retrievePosts(){
 
 render(){
   return(
-    <div>
-      {this.state.posts.map(posts =>(
-          <div>
-            <p>
-              {posts.topic}
-            </p>
-            <p>
-              {posts.description}
-            </p>
-            <p>
-              {posts.postCategory}
-            </p>
-            </div>
-      ))}
+    <div className="container">
+      <p><h2>All posts</h2></p>
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Topic</th>
+              <th scope="col">Description</th>
+              <th scope="col">Post Category</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.posts.map((posts,index)=>(
+              <tr>
+                <th scope="row">{index+1}</th>
+                <td>{posts.topic}</td>
+                <td>{posts.Description}</td>
+                <td>{posts.postCategory}</td>
+                <td>
+                  <a className="btn btn-warning" href="#">
+                    <i className="fas fa-edit"></i>&nbsp;
+                    Edit
+                  </a>
+                  <a className="btn btn-danger" href="#">
+                  <i className="fas trash-alt"></i>&nbsp;
+                    Delete
+                  </a>
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+        </table>
     </div>
   )
   }}
